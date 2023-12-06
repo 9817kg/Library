@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>LOGIN</title>
+<link rel="stylesheet" type="text/css" th:href="@{css/login.css}">
+</head>
+<body>
+<div th:replace="header/loginheader"></div>
+
+<div class="wrapper">
+	<div class="login-form">
+		<h2>login</h2>
+		<h2>login</h2>
+		<form action="/login-process" method="POST">
+			<label for="username">Email</label> <input type="text" id="username"
+				name="email" class="id" required> <label for="password">PassWord</label> <input
+				type="password" id="password" name="password" class="pw" required>
+			<button type="submit">logIn</button>
+			<br>
+		</form>
+
+		<form action="/login" method="POST" class="auth2">
+		
+			<a id="kakao" href="/oauth2/authorization/kakao" class="btn btn-third active"
+				role="button">Kakao</a>
+				
+			<a id="google"href="/oauth2/authorization/google"
+				class="btn btn-sm btn-success active" role="button">
+				Google</a>
+				 <a id = "naver"href="/oauth2/authorization/naver"
+				class="btn btn-sm btn-success active" role="button">
+				Naver</a><br>
+		</form>
+		<div class="register-button">
+			<a href="/join">Join</a>
+		</div>
+		<div class="find-links">
+			<a href="/findEmail">find id</a>| <a href="/findPw">find pw</a>
+
+		</div>
+	</div>
+	</div>
+	<script th:inline="javascript">
+    var message = /*[[${param.message}]]*/'';
+
+    $(document).ready(function() {
+        // 로그인 성공 또는 실패 메시지를 가져와서 표시
+        console.log('message 변수 값:', message); // 변수 값을 로깅
+        if (message[0] === '비밀번호변경완료') {
+            console.log(message);
+            alert("비밀번호 변경 완료!");
+        }
+    });
+</script>
+
+</body>
+</html>

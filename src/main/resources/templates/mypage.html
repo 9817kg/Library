@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<link rel="stylesheet" type="text/css" th:href="@{/css/mypage.css}">
+</head>
+<body>
+
+	<div class="logo">
+		<a href="/main">9817Kg </a>
+	</div>
+
+	<div class="container">
+		<h1>Edit Account Info</h1>
+		<div class="form-group">
+			<!-- 내 정보 페이지로 이동하는 링크 -->
+			<a href="/my/myInfo" class="page-links">내 정보</a>
+			<div class="form-group">
+				<!-- 비밀번호 수정하기 페이지로 이동하는 링크 -->
+				<a href="/my/changepw" class="page-links"> 비밀번호 변경</a>
+			</div>
+			
+			<div class="form-group">
+				<!-- 비밀번호 수정하기 페이지로 이동하는 링크 -->
+				<a href="/my/myBook" class="page-links">나의 도서 대출 이력 </a>
+			</div>
+			<div class="form-group">
+				<!-- 비밀번호 수정하기 페이지로 이동하는 링크 -->
+				<a href="/my/registBook" class="page-links">등록 도서 확인</a>
+			</div>
+
+			<div class="out">
+				<p>
+					<a href="/my/withdraw" class="delete-account">회원탈퇴</a>
+				</p>
+			</div>
+
+
+		</div>
+	</div>
+
+	<div class="content">
+		<a class="back" href="/main">Back</a> <a class="main"
+			href="/main">Main</a>
+
+	</div>
+
+</body>
+</html>

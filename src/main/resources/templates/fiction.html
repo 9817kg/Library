@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>FICTION</title>
+    <link rel="stylesheet" type="text/css" th:href="@{/css/category.css}">
+</head>
+<body>
+    <div class="header-header" th:replace="header/joinheader"></div>
+
+    <div class="container">
+        <h1>Fiction</h1>
+        <ul>
+            <li th:each="item, iterStat : ${book}">
+                <!-- provider, title, date를 가져와서 표시 --> <!-- 썸네일 이미지를 표시 --> <img
+                th:src="'/uploadImg/' + ${item.img}" alt="썸네일 이미지"><br> 
+                <p th:text="'저자: ' + ${item.author}"></p>
+                <p th:text="'제목: ' + ${item.title}"></p>
+                <p th:text="'출판일: ' + ${item.date}"></p>
+                <p th:text="'도서코드: ' + ${item.code}"></p>
+                <p th:text="'대여 수 : ' + ${item.loan} + '권'" ></p>
+                <a class="loan"th:href="@{/book/bookDetail/{bookId}(bookId=${item.itemcount})}">도서대여하러 가기</a>
+            </li>
+        </ul>
+        <div class="pagination">
+    <span th:if="${bookPage.hasPrevious()}">
+        <a th:href="@{'/category/fiction?page=' + ${bookPageNumber - 1}}">이전</a>
+    </span>
+    <span th:each="pageNumber : ${#numbers.sequence(0, bookPage.totalPages + 1)}">
+        <a th:href="@{'/category/fiction?page=' + ${pageNumber + 1}}" th:text="${pageNumber + 1}"></a>
+    </span>
+    <span th:if="${bookPage.hasNext()}">
+        <a th:href="@{'/category/fiction?page=' + ${bookPageNumber + 1}}">다음</a>
+    </span>
+</div>
+        <div th:if="${dto != null}">
+            <a th:href="@{/book/addBook}"
+                style="display: block; margin-top: 20px;">도서 등록하러 가기</a>
+        </div>
+    </div>
+</body>
+</html>

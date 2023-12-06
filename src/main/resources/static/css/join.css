@@ -1,0 +1,222 @@
+@charset "UTF-8";
+@import url("https://fonts.googleapis.com/css?family=Poppins:100,200,300,400,500,600,700,800,900");
+/* 전체 페이지 스타일 */
+* {
+	
+	box-sizing: border-box;
+	font-family: "Poppins", sans-serif;
+}
+* {
+	margin: 0px;
+	padding: 0px;
+	text-decoration: none;
+	
+	box-sizing: border-box;
+	font-family: "Poppins", sans-serif;
+}
+
+body {
+	margin: 0;
+	padding: 0;
+	
+	text-align: center;
+}
+
+.joinForm {
+    position: absolute;
+    background-color: transparent;
+    padding: 20px;
+    width: 50%;
+    text-align: center;
+    margin: auto; /* 좌우 중앙 정렬 */
+    top: 60%; /* 화면 세로 중앙 정렬을 위해 top을 50%로 설정 */
+    left: 50%; /* 화면 가로 중앙 정렬을 위해 left를 50%로 설정 */
+    transform: translate(-50%, -50%); /* 화면 중앙 정렬을 위해 transform을 사용하여 조정 */
+}
+
+
+
+
+.joinForm h2 {
+    text-align: center;
+    
+    font-size: 150px; /* 크기를 조절할 값으로 변경 */
+    position: absolute;
+    white-space: nowrap;
+    top: -170px;
+    right: 230px;
+}
+.joinForm h2:nth-child(1) {
+	color: transparent;
+	-webkit-text-stroke: 2px white;
+}
+.joinForm h2:nth-child(2) {
+	color: white;
+	animation: animate 4s ease-in-out infinite;
+}
+
+@keyframes animate {
+	0%,
+	100% {
+		clip-path: polygon(
+			0% 45%,
+			16% 44%,
+			33% 50%,
+			54% 60%,
+			70% 61%,
+			84% 59%,
+			100% 52%,
+			100% 100%,
+			0% 100%
+		);
+	}
+
+	50% {
+		clip-path: polygon(
+			0% 60%,
+			15% 65%,
+			34% 66%,
+			51% 62%,
+			67% 50%,
+			84% 45%,
+			100% 46%,
+			100% 100%,
+			0% 100%
+		);
+	}
+}
+
+
+.textForm {
+	border:1px solid white;
+	margin: 30px;
+	padding: 10px 0px;
+	border-radius: 25px;
+}
+label{
+	font-weight: bolder;
+	font-size: 15px;
+	margin: 0;
+	
+}
+
+.pw {
+	width: 100%;
+	border: none;
+	outline: none;
+	color: black;
+	font-size: 16px;
+	height: 25px;
+	background: none;
+}
+.textForm input::placeholder {
+    color: #E6E6E6;
+    font-size: 16px;
+    font-weight: bolder;
+    
+}
+.textForm input{
+	text-align: center;
+	font-weight: bolder;
+}
+.textForm :hover{
+	
+	padding:20px;
+	color: black;
+	transition: all 1.5s;
+}
+.ph{
+	
+	width: 100%;
+	border: none;
+	outline: none;
+	color: black;
+	font-size: 16px;
+	height: 25px;
+	background: none;
+}
+.name {
+	width: 100%;
+	border: none;
+	outline: none;
+	color: black;
+	font-size: 16px;
+	height: 25px;
+	background: none;
+}
+
+.email {
+	width: 100%;
+	border: none;
+	outline: none;
+	color: black;
+	font-size: 16px;
+	height: 25px;
+	background: none;
+	
+	
+}
+
+.birth {
+	width: 100%;
+	border: none;
+	outline: none;
+	color: black;
+	font-size: 16px;
+	height: 25px;
+	background: none;
+	font-weight: bolder;
+	
+}
+
+
+
+
+
+
+.btn {
+	position: relative;
+	left: 20%;
+	transform: translateX(-50%);
+	margin-bottom: 40px;
+	width: 40%;
+	height: 40px;
+	background: linear-gradient(125deg, black, black,#E6E6E6);
+	background-position: center;
+	background-size: 200%;
+	color: white;
+	font-weight: bolder;
+	border: none;
+	cursor: pointer;
+	transition: 1s;
+	display: inline;
+	border-radius: 100px;
+}
+
+
+.btn:hover {
+	background-position: right;
+	color: black;
+	font-weight: bolder;
+	font-size: 15px;
+	
+}
+.already {
+ color: white;	
+ font-weight: bold;
+	
+}
+.already a{
+	color: white;
+	font-weight: bold;
+}
+.already a:hover {
+	font-weight: bolder;
+	font-size: 20px;
+	padding:10px;
+	color: white;
+	transition: all 1s;
+	border: 1px solid white;
+	background-color:black;
+	border-radius: 30px;
+}

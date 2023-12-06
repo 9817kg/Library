@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>JOIN</title>
+<link rel="stylesheet" type="text/css" th:href="@{css/join.css}">
+</head>
+<body>
+	<div class="header-header" th:replace="header/joinheader"></div>
+	<div class="container">
+		
+		<form class="joinForm" id='join_form'>
+		<h2>J  O  I  N</h2>
+		<h2>J  O  I N</h2>
+		<label>Email</label>
+			<div class="textForm">
+				<input name="email" type="email" class="email" placeholder="이메일"/>
+
+			</div>
+			<label>password</label>
+			<div class="textForm">
+				
+				<input name="password" type="password" class="pw" placeholder="비밀번호"/>
+			</div>
+			<label>confirm password</label>
+			<div class="textForm">
+			
+				<input name="loginPwConfirm" type="password" class="pw"
+					placeholder="비밀번호 확인"/>
+			</div>
+			<label>name</label>
+			<div class="textForm">
+			
+				<input name="name" type="text" class="name" placeholder="이름"/>
+			</div>
+			<label>Mobile Number</label>
+			<div class="textForm">
+
+				<input name="phone" type="text" class="ph" placeholder="'-' 제외" />
+			</div>
+
+
+
+
+			<input type="submit" class="btn" value="J O I N" />
+			<p class="already">
+			이미 계정이 있으신가요? <a href="/login">로그인</a>
+			</p>
+		</form>
+
+		
+
+	</div>
+	<script>
+        const form = document.getElementById('join_form');
+
+        form.addEventListener('submit', e => {
+            e.preventDefault();
+
+            const data = new FormData(form);
+            const param = JSON.stringify(Object.fromEntries(data));
+
+            fetch('/auth/join', {
+                method: 'POST',
+                body: param,
+                headers: {
+                    'Content-Type': 'application/json'
+                }
+            })
+            .then(response => {
+                debugger;
+                if (response.status == 200) {
+                    window.location.href = '/login';
+                    alert("회원가입 성공")
+                } else {
+                    alert("회원가입 실패")
+                }
+            })
+            .catch(error => console.log(error))
+        });
+    </script>
+
+</body>
+</html>

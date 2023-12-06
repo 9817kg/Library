@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>MyProfile</title>
+ <link rel="stylesheet" type="text/css" th:href="@{/css/myInfo.css}">
+</head>
+<body>
+<div class="container">
+	<header>
+	 <div class="logo">
+            <a href="/main">9817Kg </a>
+       </div>
+       
+       <div class="center">
+            <h1>Profile</h1>
+            <h1>Profile</h1>
+       </div>
+       
+       <div class="content">
+       <label>Name</label>
+       	<input th:value="${dto.name}" readonly="readonly" />
+       	
+       	<br>
+       	<label>Email</label>
+       	<input th:value="${dto.email}"readonly="readonly" />
+       <br>
+       	<label>Join Date</label>
+       	<input th:value="${dto.joinDate}"readonly="readonly" />
+       	<br>
+       	<label>phone</label>
+       	<input th:value="${dto.phone}"readonly="readonly" />
+       	<a class="back" href="/my/mypage">Back</a>
+       	<a class="main" href="/main">Main</a>
+       </div>
+        </header>
+        </div>
+</body>
+</html>

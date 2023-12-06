@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+  <title>my Loan Book</title>
+      <link rel="stylesheet" type="text/css" th:href="@{/css/myBook.css}">
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
+</head>
+<style>
+
+</style>
+<body>
+    <div class="logo">
+		<a href="/main">9817Kg </a>
+	</div>
+    
+
+    <h1>대여 도서 관리</h1>
+  
+    <div class="myBook">
+    <ul>
+        <li  th:each="myBook, iterStat : ${loanDatas}">
+            <!-- provider, title, date를 가져와서 표시 -->
+          
+                <!-- 썸네일 이미지를 표시 -->
+                <img th:src="'/uploadImg/' + ${myBook.book.img}" alt="썸네일 이미지"><br>
+                
+                <p th:text="'저자: ' + ${myBook.book.author}"></p>
+                <p th:text="'제목: ' + ${myBook.book.title}"></p>
+                <p th:text="'제목: ' + ${myBook.book.code}"></p>
+                <p th:text="'대출일: ' + ${myBook.loanDate}"></p>
+                <p th:text="'반납일: ' + ${myBook.dueDate}"></p>
+                <p th:text="'반납여부: ' + (${myBook.returned} ? '반납완료' : '대여중')"></p>
+               	<a class="detail" th:href="@{/book/bookDetail/{bookId}(bookId=${myBook.book.itemcount})}">도서 정보 보기</a>
+               	<br><br><br>
+               	<button class='btn' th:if="${!myBook.returned}"
+						th:onclick="'returned(\''+ ${myBook.book.itemcount} + '\', \'' + ${dto.id} + '\')'"
+						 name="product">반납</button>
+
+           
+        </li>
+        
+    </ul>
+    <div class="pagination">
+            <span th:if="${bookPage.hasPrevious()}">
+        		<a th:href="@{'/my/myBook?page=' + ${bookPageNumber - 1}}">이전</a>
+    		</span>
+    		<span th:each="pageNumber : ${#numbers.sequence(0, bookPage.totalPages + 1)}">
+        		<a th:href="@{'/my/myBook?page=' + ${pageNumber + 1}}" th:text="${pageNumber + 1}"></a>
+    		</span>
+    		<span th:if="${bookPage.hasNext()}">
+        		<a th:href="@{'/my/myBook?page=' + ${bookPageNumber + 1}}">다음</a>
+   			 </span>
+        </div>
+    </div>
+	<div class="content">
+		<a class="back" href="/my/mypage">Back</a> <a class="main" href="/main">Main</a>
+	</div>
+    <script>
+	function returned(bookId, dtoId) {
+		if (confirm('정말로 이 도서를 반납하시겠습니까?')) {
+			$.ajax({
+				type : 'post',
+				url : '/api/returnedBook/' + bookId + '/' + dtoId,
+				success : function(response) {
+					if (response === 'success') {
+						// 삭제 성공한 경우, 페이지를 새로고침합니다.
+						alert('반납에 성공하였습니다. 마이 페이지에서 확인해주세요.');
+						location.reload();
+					} else {
+						console.log("삭제 중 예외 발생");
+						alert('반납 중 오류가 발생했습니다.111');
+					}
+				},
+				error : function() {
+
+					alert('반납 중 오류가 발생했습니다.222');
+					console.log('itemcount:', bookId);
+					console.log('id:', dtoId);
+
+				}
+			});
+		}
+	}
+</script>
+</body>
+</html>

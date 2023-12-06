@@ -1,0 +1,262 @@
+@charset "UTF-8";
+@import url("https://fonts.googleapis.com/css?family=Poppins:100,200,300,400,500,600,700,800,900");
+body {
+	background-color: black;
+}
+* {
+	
+	box-sizing: border-box;
+	font-family: "Poppins", sans-serif;
+}
+
+/* 환영글 css  */
+.container {
+	position: fixed; /* 상대적인 위치 설정 */
+	top: 20px; /* 위로 올리기 위해 음수 값을 사용 */
+	left: 15px;
+	background-color: red;
+	height: 0px;
+}
+
+.container h2 {
+	color: white;
+	margin-top: 60px;
+}
+.container h2:hover{
+	color:black;
+}
+.container p{
+	color: white;
+	font-weight: bolder;
+}
+/* travle css  */
+.center {
+	position: fixed;
+	top: 3.5%;
+	left:40%;
+	height: 0px;
+	text-align: center;
+	
+}
+.center h1{
+	font-size: 7em;
+	color: white;
+	position: absolute;
+	white-space: nowrap;
+	
+}
+
+.center h1:nth-child(1) {
+	color: transparent;
+	-webkit-text-stroke: 2px white;
+}
+
+.center h1:nth-child(2) {
+	color: #CEE3F6;
+	animation: animate 4s ease-in-out infinite;
+}
+@keyframes animate {
+	0%,
+	100% {
+		clip-path: polygon(
+			0% 45%,
+			16% 44%,
+			33% 50%,
+			54% 60%,
+			70% 61%,
+			84% 59%,
+			100% 52%,
+			100% 100%,
+			0% 100%
+		);
+	}
+
+	50% {
+		clip-path: polygon(
+			0% 60%,
+			15% 65%,
+			34% 66%,
+			51% 62%,
+			67% 50%,
+			84% 45%,
+			100% 46%,
+			100% 100%,
+			0% 100%
+		);
+	}
+}
+
+/* 숙소 */
+.accommodation{
+	
+	position: fixed;
+	top: 300px;
+	left: 80px;
+	background-image: url(/images/숙소.jpg);
+	background-size: cover;
+	height:54%;
+	width: 42%;
+	border: 3px solid transfer;
+	border-radius: 50px;
+	 
+	
+}
+.accommodation:hover{
+	
+	position: fixed;
+	top: 305px;
+	left: 79px;
+	background-image: url(/images/숙소.jpg);
+	background-size: cover;
+	height:56%;
+	width: 45%;
+	border: 3px solid transfer;
+	border-radius: 50px;
+	 transition: all 1s;
+	
+}
+
+.accommodation a {
+    position: fixed;
+    bottom: 13em; 
+    left: 700px; 
+    color: white;
+    font-size: 20px;
+    border: 3px solid white;
+    border-radius: 30px;
+    padding: 10px;
+    transition: all 0.4s;
+	overflow: hidden;
+}
+
+
+.accommodation a:hover {
+   
+    font-weight: bolder;
+     border: 3px solid black;
+     color: black;
+}
+.accommodation a::before{
+	content: "";
+	position: absolute;
+	height: 100%;
+	width: 100%;
+	background-color: white;
+	top: 100%;
+	left: 0;
+	transition: all 0.4s;
+	z-index: -1;
+}
+.accommodation a:focus{
+	outline: none;
+}
+.accommodation a:hover::before{
+	transform: translateY(-100%);
+}
+.accommodation h1{
+	color: white;
+	text-align: center;
+	font-size: 50px;
+}
+
+.accommodation p{
+	text-align: center ;
+	color: white;
+	font-weight: bolder;
+	font-size: 20px;
+	margin-top: 20%;
+}
+
+.destination{
+	position: fixed;
+	top: 300px;
+	right: 100px;
+	background-image: url(/images/destination2.jpg);
+	background-size: cover;
+	height:54%;
+	width: 42%;
+	border: 3px solid transfer;
+	border-radius: 50px;
+}
+
+.destination:hover{
+	position: fixed;
+	top: 290px;
+	right: 105px;
+	background-image: url(/images/destination2.jpg);
+	background-size: cover;
+	height:56%;
+	width: 45%;
+	border: 3px solid transfer;
+	border-radius: 50px;
+	transition: all 1s;
+}
+
+.destination h1{
+	color: white;
+	text-align: center;
+	font-weight: bolder;
+	font-size: 50px;
+}
+
+.destination p{
+	text-align: center ;
+	color: white;
+	font-weight: bolder;
+	font-size: 50px;
+	margin-top: 15%;
+}
+
+.destination a {
+    position: fixed;
+    bottom: 13em; 
+    left: 87%; 
+    color: white;
+    font-size: 20px;
+    border: 3px solid white;
+    border-radius: 30px;
+    padding: 10px;
+    transition: all 0.4s;
+	overflow: hidden;
+}
+
+
+.destination a:hover {
+   
+   font-weight: bolder;
+     border: 3px solid black;
+     color: black;
+}
+.destination a::before{
+	content: "";
+	position: absolute;
+	height: 100%;
+	width: 100%;
+	background-color: white;
+	top: 100%;
+	left: 0;
+	transition: all 0.4s;
+	z-index: -1;
+}
+.destination a:focus{
+	outline: none;
+}
+.destination a:hover::before{
+	transform: translateY(-100%);
+}
+
+
+
+
+/*전체적인 배경사진 css*/
+.wrapper {
+	height: 100vh;
+	display: flex;
+	flex-direction: column;
+	justify-content: flex-end;
+	align-items: center;
+	background-image: url(/images/main.jpg); /* 이미지 파일의 경로를 적절히 수정해주세요 */
+	background-size: cover; /* 배경 이미지를 화면에 맞게 조절 */
+	background-repeat: no-repeat; /* 배경 이미지 반복 방지 */
+	background-attachment: fixed; /* 스크롤 시 배경 이미지 고정 여부 (선택사항) */
+}

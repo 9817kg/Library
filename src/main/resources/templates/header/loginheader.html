@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>menu header</title>
+    <link rel="stylesheet" type="text/css" th:href="@{/css/loginheader.css}">
+    <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+</head>
+<body>
+
+<header>
+    <!-- 햄버거 버튼 -->
+    <button class="hamburger" onclick="toggleSidebar()">☰</button>
+
+    <div class="menu-container">
+        <div class="logo">
+            <a href="/main">9817Kg </a>
+        </div>
+        <div class="menu-left">
+            <div class="menu-item">
+                <a>Community</a>
+                <div class="sub-menu">
+                    <a href="/my/notice">Notice</a> <br> <a href="/my/qna?type=qna">Q & A</a>
+                </div>
+            </div>
+             <div class="menu-item">
+                <a>Library</a>
+                <div class="sub-menu">
+                    <a  href="/category/fiction">fiction</a> <br>
+                    <a href="/category/knowledge">knowledge</a> <br>
+                    <a href="/category/hobby">hobby</a>
+                    <a href="/category/scholarship">Scholarship</a>
+                    
+                </div>
+            </div>
+           
+        </div>
+
+        <!-- 검색창 스타일 -->
+        <div class="search-container">
+            <form action="/search" method="post">
+                <select class="type" name="type">
+                    <option class="search-select" value="">search</option>
+                    <option value="title">도서명</option>
+                    <option value="category">카테고리</option>
+                    <option value="author">저자</option>
+                    <option value="code">도서 번호</option>
+                   
+                </select>
+                <input type="text" class="search-input" name="search" placeholder="검색어를 입력하세요">
+                <button class="search-button" type="submit">search</button>
+            </form>
+        </div>
+
+        <div class="menu-right">
+            <div class="menu-item" th:if="${dto == null}">
+                <a href="/login">Login</a>
+            </div>
+            <div class="menu-item" th:if="${dto == null}">
+                <a href="/join">Join</a>
+            </div>
+            <div class="menu-item" th:if="${dto != null}">
+        <!-- 화면 우측 상단에 로그인 시 userName 출력 -->
+        <a href="/my/mypage" >Mypage</a>
+    </div>
+            <div class="menu-item" th:if="${dto != null}">
+        <!-- 화면 우측 상단에 로그인 시 userName 출력 -->
+        <a href="/logout" >logout</a>
+    </div>
+            <div class="menu-item" th:if="${dto == null}">
+                <!--화면 우측 상단에 로그인 시 userName 출력  -->
+                <a href="/login">로그인 후 이용해주세요.</a>
+            </div>
+            <div class="menu-item" th:if="${dto != null}">
+                <!--화면 우측 상단에 로그인 시 userName 출력  -->
+                <a href="/my/mypage" th:text="'환영합니다 ' + ${dto.name} + ' 님'"></a>
+            </div>
+        </div>
+    </div>
+
+    <!-- 사이드바 -->
+    <div class="sidebar2" id="sidebar2">
+        <a href="#">숙소</a>
+        <a href="#">여행지</a>
+        <a href="#">공지사항</a>
+        <a href="#">질문게시판</a>
+        <a th:if="${dto != null}" href="/my/mypage">마이페이지</a>
+        <a href="/login">로그인</a>
+        <a href="/join">회원가입</a>
+         <a th:if="${dto != null}" href="/logout">logout</a>
+    </div>
+</header>
+
+<script>
+	
+
+    function searchFunction() {
+        var searchQuery = document.getElementById("search").value;
+        if (searchQuery.trim() !== "") {
+            // 검색어를 사용하여 검색 로직을 추가
+            // 여기에 검색 결과를 표시하거나 검색 페이지로 리다이렉트할 수 있습니다.
+            alert("검색어: " + searchQuery);
+        } else {
+            alert("검색어를 입력하세요.");
+        }
+    }
+
+    // 화면 크기에 따라 햄버거 버튼 및 사이드바 토글
+    $(window).on('resize', function() {
+        if ($(window).width() < 768) {
+            $('.hamburger').show();
+            $('.sidebar2').hide();
+        } else {
+            $('.hamburger').hide();
+            
+        }
+    });
+
+    // 햄버거 버튼 클릭 시 사이드바 토글
+    function toggleSidebar() {
+        $('.sidebar2').toggle();
+    }
+</script>
+
+</body>
+</html>

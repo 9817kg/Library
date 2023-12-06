@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+
+<meta charset="UTF-8">
+<title>상세 페이지</title>
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<link rel="stylesheet" type="text/css" th:href="@{/css/bookDetail.css}">
+</head>
+<body>
+	<div class="header-header" th:replace="header/header"></div>
+	
+	<div class="wrap" th:if="${product}">
+
+		<div class="img">
+
+			<img th:src="'/uploadImg/' + ${product.img}" alt="썸네일 이미지">
+		</div>
+
+
+
+		<!-- 우측 설명 영역 -->
+		<div class="details">
+			<form>
+				<!-- 제품 상세 정보 -->
+				<h2 th:text="${product.title}"></h2>
+
+				<!-- Details 섹션 -->
+				<h3 onclick="toggleSection('details-section')">도서 소개</h3>
+				<div id="details-section" style="display: none;">
+					<p th:text="${product.description}"></p>
+				</div>
+				<h3 onclick="toggleSection('provider-section')">저자</h3>
+				<div id="provider-section" style="display: none;">
+
+					<p th:text="${product.author}"></p>
+				</div>
+				<!-- Size + Fit 섹션 -->
+				<h3 onclick="toggleSection('category-section')">카테고리</h3>
+				<div id="category-section" style="display: none;">
+					<p th:text="${product.category}"></p>
+				</div>
+				<h3 onclick="toggleSection('code-section')">도서번호</h3>
+				<div id="code-section" style="display: none;">
+					<p th:text="${product.code}"></p>
+				</div>
+
+				<div class="buttons">
+					
+					<button  th:if="${dto != null}"
+						th:onclick="'loan(\''+ ${product.itemcount} + '\', \'' + ${dto.id} + '\')'"
+						th:value="${product.itemcount}" name="product">대여</button>
+						
+						<button  th:if="${dto == null}"
+						onclick="showAlert()"
+						 name="product">대여</button>
+
+				</div>
+			</form>
+		</div>
+	</div>
+	
+	
+</body>
+<!-- 리뷰 토글 스크립트 -->
+<script>
+	/* 토글 함수 정의 */
+	function toggleSection(sectionId) {
+		var section = document.getElementById(sectionId);
+		if (section.style.display === "none" || section.style.display === "") {
+			section.style.display = "block";
+		} else {
+			section.style.display = "none";
+		}
+	}
+</script>
+
+<script th:inline="javascript">
+	function toggleReviewInput() {
+		var reviewForm = document.querySelector('.review-form');
+		if (reviewForm.style.display === 'none'
+				|| reviewForm.style.display === '') {
+			reviewForm.style.display = 'block';
+		} else {
+			reviewForm.style.display = 'none';
+		}
+	}
+</script>
+<script th:inline="javascript">
+	/* 모델로부터 dtoObject를 JavaScript 변수로 가져오기 */
+	var dtoObject = /*[[${dto}]]*/null;
+</script>
+<script th:if="${dto != null}">
+	function loan(productItemcount, dtoId) {
+		if (confirm('정말로 이 도서를 대여하시겠습니까?')) {
+			$.ajax({
+				type : 'post',
+				url : '/api/loanBook/' + productItemcount + '/' + dtoId,
+				success : function(response) {
+					if (response === 'success') {
+						// 삭제 성공한 경우, 페이지를 새로고침합니다.
+						alert('대여에 성공하였습니다. 마이 페이지에서 확인해주세요.');
+						location.reload();
+					} else {
+						console.log("삭제 중 예외 발생");
+						alert('대여 중 오류가 발생했습니다.111');
+					}
+				},
+				error : function() {
+
+					alert('대여 중 오류가 발생했습니다.222');
+					console.log('itemcount:', itemcount);
+					console.log('id:', dtoId);
+
+				}
+			});
+		}
+	}
+</script>
+<script>
+    function showAlert() {
+        console.log('showAlert function is called');
+        alert('로그인 후 이용해주세요');
+        window.location.href = "/login"; // Use this line instead
+        console.log('showAlert function is called2');
+    }
+</script>
+
+
+
+</html>

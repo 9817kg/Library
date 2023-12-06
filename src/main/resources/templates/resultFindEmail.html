@@ -1,0 +1,39 @@
+
+<!DOCTYPE html>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Your Email</title>
+<link rel="stylesheet" type="text/css"
+	th:href="@{/css/resultFindEmail.css}">
+
+
+
+</head>
+<body>
+
+
+
+
+
+	<!-- 폼 시작 -->
+	<div class="logo">
+		<a href="/">9817Kg </a>
+	</div>
+
+
+	<div class="container">
+	<div class="form-group">
+		<h2>Your Email</h2>
+		<input class="email" type="text"
+			id="name" name="name" th:value="${dto.email}" readonly>
+	</div>
+	</div>
+	<div class="content">
+
+		<a class="login" href="/login">login</a> <a class="main" href="/">Intro</a>
+
+	</div>
+</body>
+</html>

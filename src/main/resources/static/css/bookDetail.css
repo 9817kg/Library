@@ -1,0 +1,155 @@
+@charset "UTF-8";
+.pagination {
+	margin-top: 20px; /* 테이블 아래 여백 조정 */
+	text-align: center; /* 가운데 정렬 */
+}
+
+.pagination a {
+	color: red; /* 텍스트 색상을 빨간색으로 설정 */
+	text-decoration: none; /* 밑줄 제거 */
+	padding: 10px 10px; /* 텍스트 주변 여백 추가 */
+	border-radius: 10px; /* 테두리를 둥글게 만듭니다. */
+	background-color: rgba(173, 216, 230, 0.5); /* 배경 색상 설정 */
+	transition: background-color 0.3s, color 0.3s; /* 부드러운 전환 효과 추가 */
+	margin-bottom: 30px;
+}
+
+.pagination a:hover {
+	color: white; /* 호버 시 텍스트 색상 변경 */
+	background-color: red; /* 호버 시 배경 색상 변경 */
+	transition: background-color 0.3s, color 0.3s; /* 부드러운 전환 효과 추가 */
+}
+/* Details 섹션 스타일링 */
+.reviewWrapp ul {
+	list-style: none; /* 불릿을 없애줍니다. */
+	padding: 10px 0;
+}
+
+.reviewWrapp li {
+	border-bottom: 1px solid #ddd; /* 각 <li> 요소의 하단에 밑줄을 추가합니다. */
+}
+
+.details {
+	margin-bottom: 20px;
+	margin-left: 80px;
+}
+
+h2 {
+	margin-top: 160px;
+	font-size: 50px;
+}
+
+.details h3 {
+	border-bottom: 1px solid #ddd;
+	padding-bottom: 5px;
+	cursor: pointer;
+}
+body {
+    display: flex;
+    justify-content: center;
+    align-items: center; /* 세로 가운데 정렬을 위해 추가 */
+    height: 100vh; /* 뷰포트 높이의 100%를 사용하여 세로 가운데 정렬 */
+    margin: 0; /* body의 기본 마진을 제거 */
+}
+
+.wrap {
+    display: flex;
+    justify-content: flex-start;
+    flex-wrap: wrap;
+    max-width: 1200px; /* 필요한 경우 최대 너비를 지정 */
+    width: 100%;
+}
+/* Description 섹션 스타일링 */
+.description h3 {
+	border-bottom: 1px solid #ddd;
+	padding-bottom: 5px;
+	cursor: pointer;
+}
+
+/* Size + Fit 섹션 스타일링 */
+.size-fit h3 {
+	border-bottom: 1px solid #ddd;
+	padding-bottom: 5px;
+	cursor: pointer;
+}
+/* 제출 버튼 스타일링 */
+.submit-button {
+	padding: 10px 20px;
+	background-color: #007BFF;
+	color: #fff;
+	border: none;
+	border-radius: 5px;
+	cursor: pointer;
+	max-height: 38px;
+}
+
+/* 제출 버튼 호버 효과 */
+.submit-button:hover {
+	background-color: #0056b3;
+}
+
+/* 버튼 공통 스타일 */
+.buttons button {
+	padding: 10px 20px;
+	background-color: #007BFF;
+	color: #fff;
+	border: none;
+	border-radius: 5px;
+	cursor: pointer;
+}
+
+/* 버튼 호버 효과 */
+.buttons button:hover {
+	background-color: #0056b3;
+}
+
+/* 첫 번째 버튼 스타일 */
+.buttons button:nth-child(1) {
+	background-color: #28a745;
+}
+
+/* 첫 번째 버튼 호버 효과 */
+.buttons button:nth-child(1):hover {
+	background-color: #1e7e34;
+}
+.details p{
+	font-size: 15px;
+	color: white;
+	font-weight: bolder;
+}
+.details h3:hover{
+	font-size: 26px;
+	transition: all 2s;
+	
+}
+body {
+	display: flex;
+	justify-content: center;
+}
+
+.wrap {
+	display: flex;
+	justify-content: flex-start;
+	flex-wrap: wrap;
+}
+
+.img img {
+	width: 500px;
+	height: auto;
+	margin-top: 100px;
+	border: 1px solid black;
+	border-radius: 20px;
+}
+
+.info {
+	margin-left: 80px;
+}
+
+.title {
+	font-size: 36px;
+	font-weight: bold;
+}
+
+.reviewWrapp {
+	width: 100%;
+}

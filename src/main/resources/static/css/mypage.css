@@ -1,0 +1,177 @@
+@charset "UTF-8";
+
+@import url("https://fonts.googleapis.com/css?family=Poppins:100,200,300,400,500,600,700,800,900");
+
+* {
+    box-sizing: border-box;
+    font-family: "Poppins", sans-serif;
+}
+
+body {
+    background-image: url("/images/mypage2.jpg");
+    background-size: cover;
+    text-align: center;
+    margin: 0;
+}
+
+.container {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+/* 나머지 스타일은 여기에 그대로 유지 */
+
+.form-group a {
+    text-decoration: none;
+    color: white;
+}
+
+.form-group a:hover {
+    color: black;
+    font-size: 30px;
+    transition: all 1s;
+}
+
+.logo {
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    padding: 10px 0;
+    text-align: center;
+    font-size: 35px;
+    font-weight: 900;
+    position: fixed;
+    top: 0;
+    left: 0;
+    margin: 20px;
+}
+
+.logo a {
+    color: white;
+    font-style: italic;
+    overflow: hidden;
+    outline: none;
+    text-decoration: none;
+}
+
+.logo a:hover {
+    color: black;
+    font-size: 40px;
+    transition: all 1s;
+}
+
+h1 {
+    margin-bottom: 40px;
+    font-size: 4em;
+    color:white;
+}
+
+.form-group {
+    margin-bottom: 50px;
+    margin-top: 50px;
+    text-align: center;
+    font-size: 25px;
+    color: white;
+    font-weight: bold;
+}
+
+
+
+/* 회원 탈퇴 버튼 스타일 */
+.out {
+    margin-top: 20px;
+    font-size: 25px;
+}
+
+.delete-account {
+    text-decoration: none;
+    transition: color 1s;
+    margin-top: 100px;
+}
+
+.delete-account:hover {
+    color: #ff0000;
+    transition: all 1s;
+}
+
+.main {
+    position: fixed;
+    top: 10px;
+    right: 20px;
+    color: white;
+    font-size: 20px;
+    border: 3px solid transparent;
+    border-radius: 30px;
+    padding: 10px;
+    transition: all 0.4s;
+    overflow: hidden;
+    transition: all 1s;
+    text-decoration: none;
+    font-weight: bold;
+}
+
+.back {
+    position: fixed;
+    top: 10px;
+    right: 100px;
+    color: white;
+    font-size: 20px;
+    border: 3px solid transparent;
+    border-radius: 30px;
+    padding: 10px;
+    transition: all 0.4s;
+    overflow: hidden;
+    transition: all 1s;
+    text-decoration: none;
+    font-weight: bold;
+}
+
+.content a:hover {
+    font-weight: bolder;
+    border: 1px solid transparent;
+    transition: all 1s;
+    color: #3c3e70;
+}
+
+.content a::before {
+    content: "";
+    position: absolute;
+    height: 100%;
+    width: 100%;
+    background-color: white;
+    top: 100%;
+    left: 0;
+    transition: all 1s;
+    z-index: -1;
+}
+
+.content a:focus {
+    outline: none;
+}
+
+.content a:hover::before {
+    transform: translateY(-100%);
+}
+
+.content .btn-primary {
+    margin-top: 150px;
+    background-color: transparent;
+    color: white;
+    transition: color 2s, background-color 2s;
+    border: 1px solid transparent;
+    position: absolute;
+    top: 598px;
+    padding: 10px;
+    border-radius: 50px;
+    font-weight: bold;
+}
+
+.content .btn-primary:hover {
+    background-color: white;
+    border-radius: 50px;
+    color: black;
+    transition: color 2s, background-color 2s;
+    font-weight: bolder;
+}
