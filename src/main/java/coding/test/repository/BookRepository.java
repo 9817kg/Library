@@ -6,7 +6,7 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 
 import coding.test.entity.Book;
-
+import coding.test.entity.Loan;
 
 import java.util.List;
 
@@ -21,6 +21,8 @@ public interface BookRepository extends JpaRepository<Book, Long> {
     Page<Book> findByCategory(String category, Pageable pageable);
     
     Page<Book> findByAuthor(String author, Pageable pageable);
+   
+  
     
    
 }

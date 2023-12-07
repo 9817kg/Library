@@ -19,20 +19,22 @@
         </div>
         <div class="menu-left">
             <div class="menu-item">
-                <a>Community</a>
-                <div class="sub-menu">
-                    <a href="/my/notice">Notice</a> <br> <a href="/my/qna?type=qna">Q & A</a>
-                </div>
+               <a href="/my/notice">Notice</a>
+               
             </div>
                <div class="menu-item">
                 <a>Library</a>
                 <div class="sub-menu">
-                    <a  href="/category/fiction">fiction</a> <br>
-                    <a href="/category/knowledge">knowledge</a> <br>
+                    <a  href="/category/fiction">fiction</a>
+                    <a href="/category/knowledge">knowledge</a>
                     <a href="/category/hobby">hobby</a>
                     <a href="/category/scholarship">Scholarship</a>
-                    
+                     
                 </div>
+                
+            </div>
+            <div class="menu-item" th:if="${dto != null}">
+                <a href="/book/addBook">Add Book</a>
             </div>
             
         </div>

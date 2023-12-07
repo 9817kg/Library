@@ -20,6 +20,21 @@ body {
     left: 50%;
     transform: translate(-50%, -50%);
 }
+.pagination a {
+	color: black; /* 텍스트 색상을 빨간색으로 설정 */
+	text-decoration: none; /* 밑줄 제거 */
+	padding: 10px 10px; /* 텍스트 주변 여백 추가 */
+	border-radius: 10px; /* 테두리를 둥글게 만듭니다. */
+	background-color:white; /* 배경 색상 설정 */
+	transition: background-color 0.3s, color 0.3s; /* 부드러운 전환 효과 추가 */
+	margin-bottom: 30px;
+}
+
+.pagination a:hover {
+	color: white; /* 호버 시 텍스트 색상 변경 */
+	background-color:black; /* 호버 시 배경 색상 변경 */
+	transition: background-color 0.3s, color 0.3s; /* 부드러운 전환 효과 추가 */
+}
 
 /* 나머지 스타일은 여기에 그대로 유지 */
 

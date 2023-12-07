@@ -2,6 +2,8 @@ package coding.test.controller;
 
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
+import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.List;
 import java.util.Optional;
 
@@ -47,8 +49,15 @@ public class AdminController {
 	}
 	
 	@GetMapping("/loan-list")
-	public String loan_list(Model model) {
+	public String loan_list(Model model,@RequestParam(name = "page", defaultValue = "1") int page) {
+		
+		int pageSize = 6;
+		
+		Page<Book> bookPage = bookService.getBooksByPage(page, pageSize);
+		model.addAttribute("bookPageNumber", bookPage.getNumber() + 1);
+		model.addAttribute("bookPage", bookPage);
 		List<Loan> loanDatas = loanService.getAllLoan();
+		
 		model.addAttribute("loanDatas", loanDatas);
 		return "loan-list";
 		
@@ -56,9 +65,23 @@ public class AdminController {
 	
 	
 	@GetMapping("/returned_list")
-	public String returned_list(Model model) {
+	public String returned_list(Model model,@RequestParam(name = "page", defaultValue = "1") int page) {
+
+		int pageSize = 6;
+		
+		Page<Book> bookPage = bookService.getBooksByPage(page, pageSize);
+		model.addAttribute("bookPageNumber", bookPage.getNumber() + 1);
+		model.addAttribute("bookPage", bookPage);
 		List<Loan> loanDatas = loanService.getAllLoan();
-		model.addAttribute("loanDatas", loanDatas);
+		List<Loan> nonReturnedLoans = new ArrayList<>();
+		for (Loan loan : loanDatas) {
+			if(loan.isReturned()) {
+				nonReturnedLoans.add(loan);
+			}
+		}
+		
+		
+		model.addAttribute("loanDatas", nonReturnedLoans);
 		return "returned_list";
 		
 	}
@@ -76,12 +99,13 @@ public class AdminController {
 			HttpSession session) {
 		int pageSize = 6; // 페이지당 리뷰 수
 
-		List<Book> noticeList = bookService.getAllBookes();
-		Page<Book> noticePage = bookService.getBookByPage(page, pageSize);
-		model.addAttribute("PageNumber", noticePage.getNumber() + 1);
-		model.addAttribute("Page", noticePage);
+		List<Book> bookList = bookService.getAllBookes();
 
-		model.addAttribute("data", noticeList);
+		
+		Page<Book> bookPage = bookService.getBooksByPage(page, pageSize);
+		model.addAttribute("bookPageNumber", bookPage.getNumber() + 1);
+		model.addAttribute("bookPage", bookPage);
+		model.addAttribute("data", bookList);
 
 		return "book_manage";
 
@@ -117,7 +141,12 @@ public class AdminController {
 		return "redirect:/admin/book_manage"; // 수정 후, 공지사항 관리 페이지로 이동
 	}
 	@GetMapping("/user_list")
-	public String user_list(Model model) {
+	public String user_list(Model model,@RequestParam(name = "page", defaultValue = "1") int page) {
+		
+		int pageSize = 6; // 페이지당 리뷰 수
+		Page<Book> bookPage = bookService.getBooksByPage(page, pageSize);
+		model.addAttribute("bookPageNumber", bookPage.getNumber() + 1);
+		model.addAttribute("bookPage", bookPage);
 		// 전체 회원 목록을 가져온다
 		List<Member> members = memberService.getAllMembers();
 		model.addAttribute("members", members);

@@ -21,4 +21,6 @@ public interface LoanRepository extends JpaRepository<Loan, Long>{
 	 
 	List<Loan> findAllByMember(Long id);
 	 List<Loan> findByBookItemcount(Long bookItemcount);
+	 
+	 Loan findFirstByBookItemcount(Long bookItemcount);
 }

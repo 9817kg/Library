@@ -6,6 +6,7 @@ import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
 import coding.test.entity.Book;
+import coding.test.entity.Loan;
 import coding.test.repository.BookRepository;
 import lombok.RequiredArgsConstructor;
 
@@ -68,7 +69,25 @@ public class BookService {
 	public void deleteBookById(Long id) {
 		repository.deleteById(id);
 	}
+	public List<Book> getBooksWithPagination(int offset, int pageSize) {
+	    // 해당 카테고리의 상품을 페이지별로 가져오기
+	    PageRequest pageRequest = PageRequest.of(offset / pageSize, pageSize, Sort.by(Sort.Direction.DESC, "loan"));
+	    Page<Book> bookPage = repository.getBookPaged(pageRequest);
+	    
+	    return bookPage.getContent(); // 이미 정렬된 결과를 반환
+	}
 	
+	public List<Book> getBooksWithPage(int offset, int pageSize) {
+	    // 해당 카테고리의 상품을 페이지별로 가져오기
+	    PageRequest pageRequest = PageRequest.of(offset / pageSize, pageSize, Sort.by(Sort.Direction.DESC, "date"));
+	    Page<Book> bookPage = repository.getBookPaged(pageRequest);
+	    
+	    return bookPage.getContent(); // 이미 정렬된 결과를 반환
+	}
+
+
+
+	 
 	
 	// 추가: 페이징 및 정렬 적용
     public Page<Book> getBooksByPage(int page, int size) {
@@ -81,5 +100,7 @@ public class BookService {
         PageRequest pageRequest = PageRequest.of(page - 1, size, Sort.by(Sort.Direction.ASC, "itemcount"));
         return repository.findByAuthor(author, pageRequest);
     }
+
+   
 
 }

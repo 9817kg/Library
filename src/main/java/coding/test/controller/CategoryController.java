@@ -68,11 +68,8 @@ public class CategoryController {
 			@RequestParam(name = "page", defaultValue = "1") int page) {
 
 		int pageSize = 6;
-
 		int offset = (page - 1) * pageSize;
-
 		List<Book> book = bookService.getCategoryItemsWithPagination("knowledge", offset, pageSize);
-
 		model.addAttribute("book", book);
 
 		Page<Book> bookPage = bookService.getBooksByPage(page, pageSize);

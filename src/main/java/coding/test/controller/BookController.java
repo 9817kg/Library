@@ -43,13 +43,12 @@ public class BookController {
 	private final BookService bookService;
 	private final LoanRepository loanRepository;
 
-	SaveCartDTO saveCartDTO = new SaveCartDTO();
+	
 
 	@GetMapping(value = "/bookDetail/{bookId}")
 	public String productDetail(@PathVariable Long bookId, Model model, HttpSession session) {
 		Object dtoObject = session.getAttribute("dto");
-		saveCartDTO.setItemCount(bookId);
-		session.setAttribute("itemcount", saveCartDTO);
+		
 		if (dtoObject instanceof Member) {
 			Member dto = (Member) dtoObject;
 			bookDto.setItemcount(bookId);
@@ -128,7 +127,7 @@ public class BookController {
 	}
 
 	@GetMapping("/addBook")
-	public String showAddProductForm(HttpSession session, Model model) {
+	public String showAddBook(HttpSession session, Model model) {
 		Object dtoObject = session.getAttribute("dto");
 
 		if (dtoObject instanceof Member) {
@@ -149,7 +148,7 @@ public class BookController {
 	}
 
 	@PostMapping("/addBook")
-	public String addProduct(@ModelAttribute Book book, Model model, @RequestParam("upFiles") MultipartFile imageFile) {
+	public String addBook(@ModelAttribute Book book, Model model, @RequestParam("upFiles") MultipartFile imageFile) {
 		LocalDateTime joinDate = LocalDateTime.now();
 		DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
 		String formattedDateTime = joinDate.format(formatter);

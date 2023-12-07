@@ -30,5 +30,5 @@ public interface QuaryRepository extends JpaRepository<Member, Long> {
 
     @Query("SELECT m.email FROM Member m WHERE m.phone= :insertMobile")
     String selectMobilebyEmail(@Param("insertMobile") String insertMobile);
-
+    
 }

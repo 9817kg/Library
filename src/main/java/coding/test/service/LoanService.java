@@ -21,7 +21,9 @@ public class LoanService {
 	public List<Loan> getAllLoan() {
 		return loanRepository.findAll();
 	}
-	
+	public void deleteLoanById(Long id) {
+		loanRepository.deleteById(id);
+	}
 	
 	 public List<Loan> getCategoryItemsWithPagination(Long memberId, int offset, int pageSize) {
 	        // 해당 카테고리의 상품을 페이지별로 가져오기

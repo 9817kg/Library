@@ -55,16 +55,17 @@
 
 
 	</div>
-	<div th:if="${Page}!=null" class="pagination">
-		<span th:if="${Page.hasPrevious()}"> <a
-			th:href="@{'/my/registBook'+'page=' + ${PageNumber - 1}}">이전</a>
-		</span> <span th:each="pageNumber : ${#numbers.sequence(1, Page.totalPages)}">
-			<a th:href="@{'/my/registBook'+ 'page=' + ${pageNumber}}"
-			th:text="${pageNumber}"></a>
-		</span> <span th:if="${Page.hasNext()}"> <a
-			th:href="@{'/my/registBook'+ 'page='+ ${PageNumber + 1}}">다음</a>
-		</span>
-	</div>
+	<div class="pagination">
+    <span th:if="${bookPage.hasPrevious()}">
+        <a th:href="@{'/my/registBook?page=' + ${bookPageNumber - 1}}">이전</a>
+    </span>
+    <span th:each="pageNumber : ${#numbers.sequence(0, bookPage.totalPages + 1)}">
+        <a th:href="@{'/my/registBook?page=' + ${pageNumber + 1}}" th:text="${pageNumber + 1}"></a>
+    </span>
+    <span th:if="${bookPage.hasNext()}">
+        <a th:href="@{'/my/registBook?page=' + ${bookPageNumber + 1}}">다음</a>
+    </span>
+</div>
 	<div class="content">
 		<a class="back" href="/my/mypage">Back</a> <a class="main"
 			href="/main">main</a>

@@ -35,15 +35,16 @@ public class ApiController {
 	
 	@DeleteMapping("/deleteBook/{bookId}")
 	@ResponseBody
-	public String deleteNotice(@PathVariable Long bookId) {
-		try {
+	public String deleteBook(@PathVariable Long bookId) {
+	    try {
 
-			bookService.deleteBookById(bookId);
-			return "success";
-		} catch (Exception e) {
-			System.err.println("삭제 중 예외 발생 : " + e.getMessage());
-			return "error";
-		}
+	        bookService.deleteBookById(bookId);
+	        return "success";
+	    } catch (Exception e) {
+	        System.err.println("삭제 중 예외 발생 : " + e.getMessage());
+	        
+	        return "error";
+	    }
 	}
 
 	@DeleteMapping("/deleteMember/{memberId}")
@@ -106,7 +107,8 @@ public class ApiController {
 	            if (loan != null) {
 	                LocalDate currentDate = LocalDate.now();
 	                loan.setReturnedDate(currentDate);
-	                book.setLoan(book.getLoan() - 1);
+	                
+	                book.setReturnes(book.getLoan()+1);
 	                loan.setReturned(true);
 	                loanRepository.save(loan);
 	                

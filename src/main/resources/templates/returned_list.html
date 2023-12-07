@@ -9,7 +9,7 @@
 	<div class="logo">
 		<a href="/admin/admin">9817Kg </a>
 	</div>
-	<h1>User List</h1>
+	<h1>도서 반납 회원목록</h1>
 
 	<table>
 		<thead>
@@ -36,17 +36,22 @@
 				<td th:text="${loan.member.name}"></td>
 				<td th:text="${loan.loanDate}"></td>
 				<td th:text="${loan.dueDate}"></td>
-				<td th:text="${loan.returned}"></td>
-				
-				
-
-
-
-
-				
+				<td th:text="${loan.returned ? '반납완료' : '대출 중'}"></td>
 			</tr>
 		</tbody>
 	</table>
+	 <div class="pagination">
+    <span th:if="${bookPage.hasPrevious()}">
+        <a th:href="@{'/category/fiction?page=' + ${bookPageNumber - 1}}">이전</a>
+    </span>
+    <span th:each="pageNumber : ${#numbers.sequence(0, bookPage.totalPages + 1)}">
+        <a th:href="@{'/category/fiction?page=' + ${pageNumber + 1}}" th:text="${pageNumber + 1}"></a>
+    </span>
+    <span th:if="${bookPage.hasNext()}">
+        <a th:href="@{'/category/fiction?page=' + ${bookPageNumber + 1}}">다음</a>
+    </span>
+</div>
+	
 	<div class="content">
 		<a class="main" href="/admin/admin">Main</a>
 

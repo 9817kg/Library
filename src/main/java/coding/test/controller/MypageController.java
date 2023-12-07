@@ -64,8 +64,10 @@ public class MypageController {
 			UserProfile userProfile = (UserProfile) dtoObject;
 			model.addAttribute("dto", userProfile);
 			session.setAttribute("dto", userProfile);
+			System.err.println(userProfile.getName());
 
 		}
+		System.err.println("UserProfile no");
 		return "mypage";
 	}
 	
@@ -94,6 +96,7 @@ public class MypageController {
 	        model.addAttribute("dto", userProfile);
 	        model.addAttribute("loanDatas", myBook);
 	        session.setAttribute("dto", userProfile);
+	        System.err.println(userProfile.getName());
 	    }
 
 	    return "myBook";
@@ -215,7 +218,10 @@ public class MypageController {
 	@GetMapping("/registBook")
 	public String registBook(@RequestParam(name = "page", defaultValue = "1") int page, Model model,
 	        HttpSession session) {
-	    int pageSize = 6; // 페이지당 리뷰 수
+		int pageSize = 6;
+		Page<Book> bookPage = bookService.getBooksByPage(page, pageSize);
+		model.addAttribute("bookPageNumber", bookPage.getNumber() + 1);
+		model.addAttribute("bookPage", bookPage);
 	    Object dtoObject = session.getAttribute("dto");
 
 	    if (dtoObject instanceof Member) {

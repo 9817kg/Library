@@ -7,7 +7,9 @@
 <script src="/js/menu.js"></script>
 </head>
 <body>
-	
+	<div class="logo">
+		<a href="/main">9817Kg </a>
+	</div>
 
 	<div class="book-board">
 		<table>
@@ -25,7 +27,7 @@
 				</tr>
 			</thead>
 			<tbody >
-            <tr th:if="${dto.name}" th:each="item : ${data}">
+            <tr  th:each="item : ${data}">
             
                 <td th:text="${item.itemcount}"></td>
                 <td th:text="${item.title}"></td>
@@ -40,7 +42,8 @@
                     <button class="custom-button modify-button" th:onclick="'goToLink(\'' + '/admin/modifyBook/' + ${item.itemcount} + '\')'">수정</button>
                 </td>
                 <td>
-                    <button class="custom-button modify-button" th:onclick="'goToLink(\'' + '/api/loanMember/' + ${item.itemcount} + '\')'">미리보기</button>
+                 <button class="custom-button modify-button"
+							th:onclick="'goToLink(\'' + '/my/loanMember/' + ${item.itemcount} + '\' )'">대출인원</button>
                 </td>
             </tr>
         </tbody>
@@ -50,16 +53,16 @@
 		
 	</div>
 	<div class="pagination">
-		<span th:if="${Page.hasPrevious()}"> <a
-			th:href="@{'/my/notice'+'page=' + ${PageNumber - 1}}">이전</a>
-		</span> <span
-			th:each="pageNumber : ${#numbers.sequence(1, Page.totalPages)}">
-			<a th:href="@{'/my/notice'+ 'page=' + ${pageNumber}}"
-			th:text="${pageNumber}"></a>
-		</span> <span th:if="${Page.hasNext()}"> <a
-			th:href="@{'/my/notice'+ 'page='+ ${PageNumber + 1}}">다음</a>
-		</span>
-	</div>
+    <span th:if="${bookPage.hasPrevious()}">
+        <a th:href="@{'/admin/book_manage?page=' + ${bookPageNumber - 1}}">이전</a>
+    </span>
+    <span th:each="pageNumber : ${#numbers.sequence(0, bookPage.totalPages + 1)}">
+        <a th:href="@{'/admin/book_manage?page=' + ${pageNumber + 1}}" th:text="${pageNumber + 1}"></a>
+    </span>
+    <span th:if="${bookPage.hasNext()}">
+        <a th:href="@{'/admin/book_manage?page=' + ${bookPageNumber + 1}}">다음</a>
+    </span>
+</div>
 
 
 <script>
@@ -99,6 +102,9 @@ function modify(bookId) {
 }
 
 </script>
+<div class="content">
+			<a class="main" href="/admin/admin">Back</a>
 
+		</div>
 </body>
 </html>
