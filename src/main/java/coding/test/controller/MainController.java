@@ -30,37 +30,34 @@ import coding.test.service.BookService;
 import coding.test.service.MemberService;
 import jakarta.servlet.http.HttpSession;
 
-
-
-
 @Controller
 public class MainController {
-	
+
 	@Autowired
 	private MemberRepository memberRepository; // OAuth2Service 주입 추가
 	MemberDTO dto = new MemberDTO();
 
 	Member member = new Member();
 	@Autowired
-	private	MemberService memberService;
+	private MemberService memberService;
 	@Autowired
-	private	BookService bookService;
+	private BookService bookService;
 
 	@GetMapping("/main")
 	public String dashboardPage(@AuthenticationPrincipal User user, Model model, HttpSession session) {
-		
+
 		if (user != null) {
-			
+
 			String email = user.getUsername();
 			Optional<Member> optionalMember = memberRepository.findByEmail(email);
-			 if (optionalMember.isPresent()) {
-		            Member dto = optionalMember.get();
-		            session.setAttribute("dto", dto);
-		            model.addAttribute("dto", dto);
-		        }
-			
-		}else if(user == null) {
-			
+			if (optionalMember.isPresent()) {
+				Member dto = optionalMember.get();
+				session.setAttribute("dto", dto);
+				model.addAttribute("dto", dto);
+			}
+
+		} else if (user == null) {
+
 			UserProfile userProfile = (UserProfile) session.getAttribute("dto");
 			model.addAttribute("dto", userProfile);
 			session.setAttribute("dto", userProfile);
@@ -69,48 +66,54 @@ public class MainController {
 		return "main";
 
 	}
-	
+
 	@GetMapping("/")
 	public String getIntro() {
 		return "intro";
 	}
+
 	@GetMapping("/new")
-	public String getNew(Model model,@RequestParam(name = "page", defaultValue = "1") int page) {
+	public String getNew(Model model, @RequestParam(name = "page", defaultValue = "1") int page, HttpSession session) {
+		Object dtoObject = session.getAttribute("dto");
+
+		Member dto = (Member) dtoObject;
+		model.addAttribute("dto", dto);
+		session.setAttribute("dto", dto);
+
 		int pageSize = 6;
 		int offset = (page - 1) * pageSize;
-		
-        Page<Book> bookPage = bookService.getBooksByPage(page, pageSize);
-        List<Book> books = bookService.getBooksWithPage(offset, pageSize);
-       
-        model.addAttribute("bookPageNumber", bookPage.getNumber() + 1);
-		model.addAttribute("bookPage", bookPage);
-        
-        model.addAttribute("book", books);
 
-	    return "new";
+		Page<Book> bookPage = bookService.getBooksByPage(page, pageSize);
+		List<Book> books = bookService.getBooksWithPage(offset, pageSize);
+
+		model.addAttribute("bookPageNumber", bookPage.getNumber() + 1);
+		model.addAttribute("bookPage", bookPage);
+
+		model.addAttribute("book", books);
+
+		return "new";
 	}
 
 	@GetMapping("/famous")
-	public String getFamous(Model model,@RequestParam(name = "page", defaultValue = "1") int page) {
-        
+	public String getFamous(Model model, @RequestParam(name = "page", defaultValue = "1") int page,
+			HttpSession session) {
+		Object dtoObject = session.getAttribute("dto");
+		
+		Member dto = (Member) dtoObject;
+		model.addAttribute("dto", dto);
+		session.setAttribute("dto", dto);
 		int pageSize = 6;
 		int offset = (page - 1) * pageSize;
-		
-        Page<Book> bookPage = bookService.getBooksByPage(page, pageSize);
-        List<Book> books = bookService.getBooksWithPagination(offset, pageSize);
-       
-        model.addAttribute("bookPageNumber", bookPage.getNumber() + 1);
+
+		Page<Book> bookPage = bookService.getBooksByPage(page, pageSize);
+		List<Book> books = bookService.getBooksWithPagination(offset, pageSize);
+
+		model.addAttribute("bookPageNumber", bookPage.getNumber() + 1);
 		model.addAttribute("bookPage", bookPage);
-        
-        model.addAttribute("book", books);
 
+		model.addAttribute("book", books);
 
-	    return "famous";
+		return "famous";
 	}
-	
-	
-	
-	
-	
-}
 
+}

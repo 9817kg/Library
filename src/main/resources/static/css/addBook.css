@@ -6,8 +6,14 @@
     font-family: "Poppins", sans-serif;
 }
 
-.upload{
-	
+textarea{
+	width: 500px;
+	height: 250px;
+	border: 1px solid white;
+	border-radius: 15px;
+	font-weight: bold;
+	font-size: 20px;
+	background-color: 	#FAFAFA;
 }
 .upload:hover{
 	 margin-top: 15px;
