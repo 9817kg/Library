@@ -22,7 +22,9 @@ repositories {
     maven { url 'https://repo.spring.io/milestone' }
     maven { url 'https://repo.spring.io/snapshot' }
 }
-
+jar {
+    enabled = false
+}
 dependencies {
 	
     implementation 'mysql:mysql-connector-java:8.0.23' 
