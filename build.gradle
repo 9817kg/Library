@@ -7,10 +7,6 @@ plugins {
 group = 'second.project'
 version = '0.0.1-SNAPSHOT'
 
-jar {
-    enabled = false
-}
-
 java {
     sourceCompatibility = '17'
 }
@@ -26,7 +22,9 @@ repositories {
     maven { url 'https://repo.spring.io/milestone' }
     maven { url 'https://repo.spring.io/snapshot' }
 }
-
+jar {
+    enabled = false
+}
 dependencies {
 	
     implementation 'mysql:mysql-connector-java:8.0.23' 
