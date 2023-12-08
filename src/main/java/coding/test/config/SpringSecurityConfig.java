@@ -32,7 +32,8 @@ public class SpringSecurityConfig {
         http.csrf(csrf -> csrf.disable())
                 .authorizeHttpRequests(request -> request
                                 .dispatcherTypeMatchers(DispatcherType.FORWARD).permitAll()
-                                .requestMatchers("/status", "/join", "/auth/join", "/main","/login","/","/category/**").permitAll()
+                                .requestMatchers("/**").permitAll()
+                                .requestMatchers("/status", "/join", "/auth/join","/login","/").permitAll()
                                 .requestMatchers("/findEmail", "/resultFindEmail", "/findPw").permitAll()
                                 .requestMatchers("/book/bookDetail/**","/api/**").permitAll()
                                 

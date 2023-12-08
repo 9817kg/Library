@@ -64,7 +64,7 @@ public class BookController {
 
 			model.addAttribute("product", bookDto);
 
-			return "/bookDetail";
+			return "bookDetail";
 		}
 
 		else if (dtoObject instanceof UserProfile) {
@@ -82,7 +82,7 @@ public class BookController {
 			model.addAttribute("product", bookDto);
 			model.addAttribute("dto", userProfile);
 
-			return "/bookDetail";
+			return "bookDetail";
 
 		} else {
 
@@ -95,7 +95,7 @@ public class BookController {
 			bookDto.setCategory(query.selectCategory(bookId));
 
 			model.addAttribute("product", bookDto);
-			return "/bookDetail";
+			return "bookDetail";
 		}
 	}
 

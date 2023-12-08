@@ -75,18 +75,18 @@
                 <p>검색 결과가 없습니다.</p>
             </th:block>
         </div>
+<div class="pagination" th:if="${bookPage != null}">
+    <span th:if="${bookPage.hasPrevious()}">
+        <a th:href="@{'/search?page=' + ${bookPageNumber - 1}}">이전</a>
+    </span>
+    <span th:each="pageNumber : ${#numbers.sequence(0, bookPage.totalPages)}">
+        <a th:href="@{'/search?page=' + ${pageNumber + 1}}" th:text="${pageNumber + 1}"></a>
+    </span>
+    <span th:if="${bookPage.hasNext()}">
+        <a th:href="@{'/search?page=' + ${bookPageNumber + 1}}">다음</a>
+    </span>
+</div>
 
-        <div class="pagination">
-            <span th:if="${bookPage.hasPrevious()}">
-                <a th:href="@{'/search?page=' + ${bookPageNumber - 1}}">이전</a>
-            </span>
-            <span th:each="pageNumber : ${#numbers.sequence(0, bookPage.totalPages + 1)}">
-                <a th:href="@{'/search?page=' + ${pageNumber + 1}}" th:text="${pageNumber + 1}"></a>
-            </span>
-            <span th:if="${bookPage.hasNext()}">
-                <a th:href="@{'/search?page=' + ${bookPageNumber + 1}}">다음</a>
-            </span>
-        </div>
 
     </div>
     <div class="content">

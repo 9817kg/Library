@@ -54,13 +54,12 @@ public class CategoryController {
 		if (dtoObject instanceof Member) {
 			Member dto = (Member) dtoObject;
 			model.addAttribute("dto", dto);
-		} else if (dtoObject instanceof UserProfile) {
-			UserProfile userProfile = (UserProfile) dtoObject;
-			model.addAttribute("dto", userProfile);
-		}
+			return "fiction";
+		} else {
 
-		// 뷰 페이지로 이동
-		return "/fiction";
+			// 뷰 페이지로 이동
+			return "fiction";
+		}
 	}
 
 	@GetMapping("/knowledge")
@@ -82,11 +81,11 @@ public class CategoryController {
 		if (dtoObject instanceof Member) {
 			Member dto = (Member) dtoObject;
 			model.addAttribute("dto", dto);
-		} else if (dtoObject instanceof UserProfile) {
-			UserProfile userProfile = (UserProfile) dtoObject;
-			model.addAttribute("dto", userProfile);
+			return "knowledge";
+		} else {
+			return "knowledge";
 		}
-		return "/knowledge";
+
 	}
 
 	@GetMapping("/hobby")
@@ -110,11 +109,11 @@ public class CategoryController {
 		if (dtoObject instanceof Member) {
 			Member dto = (Member) dtoObject;
 			model.addAttribute("dto", dto);
-		} else if (dtoObject instanceof UserProfile) {
-			UserProfile userProfile = (UserProfile) dtoObject;
-			model.addAttribute("dto", userProfile);
+			return "hobby";
+
+		} else {
+			return "hobby";
 		}
-		return "/hobby";
 	}
 
 	@GetMapping("/scholarship")
@@ -139,11 +138,10 @@ public class CategoryController {
 		if (dtoObject instanceof Member) {
 			Member dto = (Member) dtoObject;
 			model.addAttribute("dto", dto);
-		} else if (dtoObject instanceof UserProfile) {
-			UserProfile userProfile = (UserProfile) dtoObject;
-			model.addAttribute("dto", userProfile);
+			return "scholarship";
+		} else {
+			return "scholarship";
 		}
-		return "/scholarship";
 	}
 
 }

@@ -38,8 +38,7 @@ public class MainController {
 	MemberDTO dto = new MemberDTO();
 
 	Member member = new Member();
-	@Autowired
-	private MemberService memberService;
+	
 	@Autowired
 	private BookService bookService;
 
@@ -54,18 +53,18 @@ public class MainController {
 				Member dto = optionalMember.get();
 				session.setAttribute("dto", dto);
 				model.addAttribute("dto", dto);
+				return "main";
 			}
 
-		} else if (user == null) {
-
-			UserProfile userProfile = (UserProfile) session.getAttribute("dto");
-			model.addAttribute("dto", userProfile);
-			session.setAttribute("dto", userProfile);
+		}else {
+			return "main";
 		}
 
 		return "main";
-
+		
+		
 	}
+	
 
 	@GetMapping("/")
 	public String getIntro() {

@@ -42,17 +42,14 @@ public class SearchController {
         Page<Book> bookPage = bookService.getBooksByPage(page, pageSize);
 
         model.addAttribute("bookPageNumber", bookPage.getNumber() + 1);
-        model.addAttribute("bookPage", bookPage);
+        model.addAttribute("bookPage", bookPage);  // 이 부분을 추가해주세요.
         model.addAttribute("results", bookDtos);
 
         Object dtoObjectUser = session.getAttribute("dto");
         if (dtoObjectUser instanceof Member) {
             Member dto = (Member) dtoObjectUser;
             model.addAttribute("dto", dto);
-        } else if (dtoObjectUser instanceof UserProfile) {
-            UserProfile userProfile = (UserProfile) dtoObjectUser;
-            model.addAttribute("dto", userProfile);
-        }
+        } 
         return "search";
     }
 
@@ -115,7 +112,7 @@ public class SearchController {
                 break;
             default:
                 // 예외 처리 또는 기본값 설정
-                return "redirect:/search";
+                return "search";
         }
 
         int size = titles.size();
@@ -138,6 +135,6 @@ public class SearchController {
         model.addAttribute("results", bookDtos);
         session.setAttribute("results", bookDtos);
         // 검색 결과 페이지로 이동
-        return "redirect:/search";
+        return "search";
     }
 }
