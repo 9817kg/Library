@@ -1,14 +1,14 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
-    <title>FICTION</title>
+    <title>FAMOUS</title>
     <link rel="stylesheet" type="text/css" th:href="@{/css/category.css}">
 </head>
 <body>
     <div class="header-header" th:replace="header/joinheader"></div>
 
     <div class="container">
-        <h1>Fiction</h1>
+       
         <ul>
             <li th:each="item, iterStat : ${book}">
                 <!-- provider, title, date를 가져와서 표시 --> <!-- 썸네일 이미지를 표시 --> <img

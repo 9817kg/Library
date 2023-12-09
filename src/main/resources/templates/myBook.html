@@ -21,6 +21,7 @@
 					<th>제목</th>
 					<th>도서 번호</th>
 					<th>대출일</th>
+					<th>반납 예정일</th>
 					<th>반납일</th>
 					<th>반납여부</th>
 					<th>도서 정보 보러가기</th>
@@ -34,7 +35,9 @@
 					<td th:text="${myBook.book.title}"></td>
 					<td th:text="${myBook.book.code}"></td>
 					<td th:text="${myBook.loanDate}"></td>
-					<td th:text="${myBook.dueDate}"></td>
+					<td  th:text="${myBook.dueDate}"></td>
+					<td th:if="${myBook.returned}" th:text="${myBook.returnedDate}"></td>
+					<td th:unless="${myBook.returned}"></td>
 					<td th:text="${myBook.returned ? '반납완료' : '대여 중'}"></td>
 					<td><a class="detail"
 						th:href="@{/book/bookDetail/{bookId}(bookId=${myBook.book.itemcount})}">도서
