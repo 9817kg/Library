@@ -30,9 +30,7 @@ textarea{
     
     font-weight: bolder;
 }
-.upload::multiple{
-	
-}
+
 #category{
 	width: 150px;
 	border-radius: 50px;
@@ -106,7 +104,7 @@ textarea{
 }
 
 body {
-    background-image: url("/images/changepw.jpg");
+    background-image: url("/images/addbook.jpg");
     background-size: cover;
     background-repeat: no-repeat;
     margin: 0;
