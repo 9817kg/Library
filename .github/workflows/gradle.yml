@@ -29,9 +29,7 @@ jobs:
         run: chmod +x ./gradlew
 
       - name: Build with Gradle
-        run: ./gradlew build --warning-mode all
-        # 여기서 그래들 버전을 지정하는 것이 필요하지 않습니다.
-        # Gradle Wrapper를 사용하면 자동으로 설정됩니다.
+        run: ./gradlew build --warning-mode all --scan
 
       - name: Generate deployment package
         run: |
