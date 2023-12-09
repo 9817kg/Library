@@ -33,14 +33,14 @@ dependencies {
     implementation 'org.antlr:antlr4-runtime:4.10.1'
 }
 
+java {
+    sourceCompatibility = JavaVersion.VERSION_17
+}
+
 tasks.named('bootBuildImage') {
     builder = 'paketobuildpacks/builder-jammy-base:latest'
 }
 
 test {
     useJUnitPlatform()
-}
-
-java {
-    sourceCompatibility = JavaVersion.VERSION_17
 }
