@@ -7,7 +7,6 @@ on:
   pull_request:
     branches:
       - main
-    
 
 permissions:
   contents: read
@@ -33,6 +32,7 @@ jobs:
         uses: gradle/gradle-build-action@67421db6bd0bf253fb4bd25b31ebb98943c375e1
         with:
           arguments: build
+          gradle-version: '8.5' # 여기서 그래들 버전을 8.5로 변경
 
       - name: Generate deployment package
         run: |
