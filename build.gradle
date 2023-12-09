@@ -9,18 +9,10 @@ repositories {
     maven { url 'https://repo.spring.io/snapshot' }
 }
 
-java {
-    sourceCompatibility = JavaVersion.VERSION_17
-}
-
 configurations {
     compileOnly {
         extendsFrom annotationProcessor
     }
-}
-
-tasks.named('bootBuildImage') {
-    builder = 'paketobuildpacks/builder-jammy-base:latest'
 }
 
 dependencies {
@@ -34,7 +26,6 @@ dependencies {
     implementation 'org.thymeleaf.extras:thymeleaf-extras-springsecurity6'
     compileOnly 'org.projectlombok:lombok'
     developmentOnly 'org.springframework.boot:spring-boot-devtools'
-    
     runtimeOnly 'mysql:mysql-connector-java'
     annotationProcessor 'org.projectlombok:lombok'
     testImplementation 'org.springframework.boot:spring-boot-starter-test'
@@ -42,6 +33,14 @@ dependencies {
     implementation 'org.antlr:antlr4-runtime:4.10.1'
 }
 
+tasks.named('bootBuildImage') {
+    builder = 'paketobuildpacks/builder-jammy-base:latest'
+}
+
 test {
     useJUnitPlatform()
+}
+
+java {
+    sourceCompatibility = JavaVersion.VERSION_17
 }
