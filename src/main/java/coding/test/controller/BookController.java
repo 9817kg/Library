@@ -136,15 +136,11 @@ public class BookController {
 			model.addAttribute("dto", dto);
 			session.setAttribute("dto", dto);
 			return "addBook";
-		} else if (dtoObject instanceof UserProfile) {
-			UserProfile userProfile = (UserProfile) dtoObject;
+		} else {
+			return "addBook";}
+		
 
-			model.addAttribute("dto", userProfile);
-			session.setAttribute("dto", userProfile);
-			return "addBook";
-		}
-
-		return "addBook"; // 상품 등록 폼 페이지로 이동
+		
 	}
 
 	@PostMapping("/addBook")
