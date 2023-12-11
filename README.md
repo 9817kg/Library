@@ -39,9 +39,6 @@
 - **language**: JavaScript, HTML/CSS
 - **skill**: AJAX, Thymeleaf
 
-### 산출물 경로
-
-#### Result 파일에 ppt로 정리
 
 #### 관리자 계정 
 
