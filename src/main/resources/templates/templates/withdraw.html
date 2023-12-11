@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<link rel="stylesheet" type="text/css" th:href="@{/css/withdraw.css}">
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+</head>
+<body>
+
+	<div class="logo">
+		<a href="/main">9817Kg </a>
+	</div>
+
+	<div class="container">
+
+		<h1>WithDraw</h1>
+	<div class="form-group">
+			<label for="pw">Password</label> 
+			<input class="pw" id="pw" name="pw" type="password" placeholder="password" /> 
+				 <button class="btn-show" type="button" onclick="togglePasswordVisibility('pw')">Show Password</button>
+				
+				
+				<a href="javascript:void(0);"th:onclick="'withdraw(\'' + ${dto.id} + '\', document.getElementById(\'pw\').value)'">WithDraw</a>
+		</div>
+	</div>
+	<div class="content">
+		<a class="back" href="/main">Back</a> <a class="main" href="/main">Main</a>
+	</div>
+	<script>
+		function withdraw(memberId, password) {
+			if (confirm('정말로 탈퇴하시겠습니까?')) {
+				$.ajax({
+					type : 'DELETE',
+					url : '/my/withdraw/' + memberId + '?pw=' + password,
+					success : function(response) {
+						if (response === 'success') {
+							// 삭제 성공한 경우, 페이지를 새로고침합니다.
+							alert('회원탈퇴가 성공적으로 처리되었습니다.');
+							location.href = "/"
+						} else {
+							console.log("비밀번호 불일치");
+							alert('비밀번호가 일치하지 않습니다.');
+							location.reload();
+						}
+					},
+					error : function() {
+						alert('비밀번호가 일치하지 않습니다.');
+					}
+				});
+			}
+		}
+
+	    function togglePasswordVisibility(inputId) {
+	        const input = document.getElementById(inputId);
+
+	        if (input.type === 'password') {
+	            input.type = 'text';
+	        } else {
+	            input.type = 'password';
+	        }
+	    }
+		
+	</script>
+</body>
+</html>

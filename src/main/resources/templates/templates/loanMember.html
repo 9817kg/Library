@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<title>User List</title>
+<link rel="stylesheet" type="text/css" th:href="@{/css/user_list.css}">
+</head>
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<body>
+	<div class="logo">
+		<a href="/main">9817Kg </a>
+	</div>
+	<h1>User List</h1>
+
+	<table>
+		<thead>
+			<tr>
+				<th>#</th>
+				<th>도서 이름</th>
+				<th>저자</th>
+				<th>도서 코드</th>
+				<th>대여 회원</th>
+				<th>대여 날짜</th>
+				<th>대여 만기일</th>
+				<th>반납 여부</th>
+
+				
+			</tr>
+		</thead>
+		<tbody>
+
+			<tr th:each="loan : ${loans}">
+			<td th:text="${loan.id}"></td>
+				<td th:text="${loan.book.title}"></td>
+				<td th:text="${loan.book.author}"></td>
+				<td th:text="${loan.book.code}"></td>
+				<td th:text="${loan.member.name}"></td>
+				<td th:text="${loan.loanDate}"></td>
+				<td th:text="${loan.dueDate}"></td>
+				<td th:text="${loan.returned}"></td>
+				
+			</tr>
+		</tbody>
+	</table>
+	<div class="content">
+		<a class="main" href="/main">Main</a>
+
+
+	</div>
+
+	<script>
+		function deleteMember(memberId) {
+			if (confirm('정말로 이 회원을 삭제하시겠습니까?')) {
+				$.ajax({
+					type : 'DELETE',
+					url : '/api/deleteMember/' + memberId,
+					success : function(response) {
+						if (response === 'success') {
+							// 삭제 성공한 경우, 페이지를 새로고침합니다.
+							location.reload();
+						} else {
+							console.log("삭제 중 예외 발생");
+							alert('삭제 중 오류가 발생했습니다.');
+						}
+					},
+					error : function() {
+						alert('삭제 중 오류가 발생했습니다.');
+					}
+				});
+			}
+		}
+	</script>
+</body>
+</html>

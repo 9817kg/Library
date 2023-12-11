@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<link rel="stylesheet" type="text/css" th:href="@{css/main.css}">
+</head>
+<body>
+	<div class="header-header" th:replace="header/header"></div>
+	<div th:replace="sidebar/sidebar"></div>
+	
+	<div class="wrapper">
+	<div class=container >
+		<h2>Hi, welcome to here</h2>
+		<p>today : </p>
+	</div>
+	<div class=center >
+		<h1>T r a v l e</h1>
+		<h1>T r a v l e</h1>
+		
+	</div>
+	<div class="accommodation">
+	
+		<h1>Accommodation</h1>
+		<p>환상적인 여행을 즐길 숙소는 어디일까?</p>
+		<a href="/accommodation">view</a>
+	</div>
+	
+	<div class="destination">
+	
+	<h1>Destination</h1>
+	
+	<p>where we go?</p>
+	 
+	<a href="/destination">view</a>
+	
+	
+	</div>
+	</div>
+	<div th:replace="/footer/footer.html"></div>
+	
+</body>
+</html>

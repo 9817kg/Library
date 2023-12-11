@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<link rel="stylesheet" type="text/css" th:href="@{/css/findEmail.css}">
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+</head>
+<body>
+
+	<div class="logo">
+		<a href="/">9817Kg </a>
+	</div>
+
+	<div class="container">
+
+		<h1>findEmail</h1>
+	<div class="form-group">
+	<form action="/findEmail" method="post">
+			<label for="pw">mobile</label> 
+			<input class="pw" id="mobile" name="mobile" type="text" placeholder="하이폰('-') 제외 입력" /> 
+				 <button class=btn-show type="submit" >find</button>
+				
+			</form>
+		</div>
+	</div>
+	<div class="content">
+		<a class="back" href="/login">login</a> <a class="main" href="/">intro</a>
+	</div>
+	
+</body>
+</html>

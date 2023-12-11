@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>SEARCH</title>
+<link rel="stylesheet" type="text/css" th:href="@{/css/search.css}">
+<script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+</head>
+<body>
+<div class="logo">
+		<a href="/main">9817Kg </a>
+	</div>
+    <div style="margin-top: 100px;">
+        <h3>검색 결과</h3>
+        <p class="" th:if="${results != null and not #lists.isEmpty(results)}">
+            <span th:text="'연관된 게시물 수 : ' + ${results.size()}"></span>
+        </p>
+
+        <div class="list_wrap">
+            <table>
+                <thead>
+                    <tr>
+                        <th>이미지</th>
+                        <th>저자</th>
+                        <th>제목</th>
+                        <th>카테고리</th>
+                        <th>도서 번호</th>
+                        <th>출판 일</th>
+                        <th>대여 수</th>
+                        <th>상세 정보</th>
+                        <th>대여</th>
+                    </tr>
+                </thead>
+                
+                <tbody>
+                    <tr th:each="result : ${results}" class="list">
+                        <td>
+                            <!-- 썸네일 이미지를 표시 -->
+                            <img th:src="'/uploadImg/' + ${result.img}" alt="썸네일 이미지">
+                        </td>
+                        <td th:text="${result.author}"></td>
+                        <td th:text="${result.title}"></td>
+                        <td th:text="${result.category}"></td>
+                        <td th:text="${result.code}"></td>
+                        <td th:text="${result.date}"></td>
+                        <td th:text="${result.loan}"></td>
+                        <td class="product-details" >
+                            <a th:href="@{/book/bookDetail/{bookId}(bookId=${result.itemcount})}" >도서 정보</a>
+                        </td>
+                        <td class="product-details" >
+                            <div class="buttons">
+					
+					<button  th:if="${dto != null}"
+						th:onclick="'loan(\''+ ${result.itemcount} + '\', \'' + ${dto.id} + '\')'"
+						name="product">대여</button>
+						
+						<button  th:if="${dto == null}"
+						onclick="showAlert()"
+						 name="product">대여</button>
+
+				</div>
+                        </td>
+                       
+				
+                        
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        
+
+        <!-- 검색 결과가 없는 경우 -->
+        <div>
+            <th:block th:if="${results != null and #lists.isEmpty(results)}">
+                <p>검색 결과가 없습니다.</p>
+            </th:block>
+        </div>
+<div class="pagination" th:if="${bookPage != null}">
+    <span th:if="${bookPage.hasPrevious()}">
+        <a th:href="@{'/search?page=' + ${bookPageNumber - 1}}">이전</a>
+    </span>
+    <span th:each="pageNumber : ${#numbers.sequence(0, bookPage.totalPages)}">
+        <a th:href="@{'/search?page=' + ${pageNumber + 1}}" th:text="${pageNumber + 1}"></a>
+    </span>
+    <span th:if="${bookPage.hasNext()}">
+        <a th:href="@{'/search?page=' + ${bookPageNumber + 1}}">다음</a>
+    </span>
+</div>
+
+
+    </div>
+    <div class="content">
+		<a class="back" href="/main">Back</a> <a class="main" href="/main">Main</a>
+	</div>
+    
+<script th:if="${dto != null}">
+	function loan(productItemcount, dtoId) {
+		if (confirm('정말로 이 도서를 대여하시겠습니까?')) {
+			$.ajax({
+				type : 'post',
+				url : '/api/loanBook/' + productItemcount + '/' + dtoId,
+				success : function(response) {
+					if (response === 'success') {
+						// 삭제 성공한 경우, 페이지를 새로고침합니다.
+						alert('대여에 성공하였습니다. 마이 페이지에서 확인해주세요.');
+						location.reload();
+					} else {
+						console.log("삭제 중 예외 발생");
+						alert('대여 중 오류가 발생했습니다.111');
+					}
+				},
+				error : function() {
+
+					alert('대여 중 오류가 발생했습니다.222');
+					console.log('itemcount:', itemcount);
+					console.log('id:', dtoId);
+
+				}
+			});
+		}
+	}
+</script>
+<script>
+    function showAlert() {
+        console.log('showAlert function is called');
+        alert('로그인 후 이용해주세요');
+        window.location.href = "/login"; // Use this line instead
+        console.log('showAlert function is called2');
+    }
+</script>
+</body>
+
+</html>

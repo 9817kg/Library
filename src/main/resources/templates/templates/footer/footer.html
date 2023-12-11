@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+
+<style>
+/* 푸터 스타일 */
+footer {
+	width: 100vw;
+	height: 150px;
+	background-color: transparent; /* 배경색 설정 */
+	position: absolute; color : black; /* 글자색 설정 */
+	padding: 20px 0; /* 위아래로 간격 설정 */
+	text-align: center; /* 텍스트 가운데 정렬 */
+	border-radius: 50px; bottom : 0;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	bottom: 0;
+	color: black
+}
+
+/* 푸터 링크 스타일 */
+footer a {
+	color: black; /* 링크 색상 설정 */
+	text-decoration: none; /* 링크 밑줄 제거 */
+}
+
+footer a:hover {
+	color: white;
+}
+
+footer p{
+	font-weight: bolder;
+	
+}
+
+</style>
+</head>
+
+
+<body>
+	<footer>
+		<div>
+			<br> &copy; <a href="/my/main">Your Website| 2023</a> <br>
+			<a href="/portfolio">director - lee kyojin</a><br>
+			<a href="https://let-coding.tistory.com/">blog</a>
+			<a href="https://github.com/9817kg">Github<img src="/images/git.png">
+			</a>
+		</div>
+	</footer>
+</body>
+</html>

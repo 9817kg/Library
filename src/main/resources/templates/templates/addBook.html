@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<link rel="stylesheet" type="text/css" th:href="@{/css/addBook.css}">
+<head>
+</head>
+<body>
+    <div class="logo">
+        <a href="/main">9817Kg </a>
+    </div>
+
+    <div class="center">
+        <h1>Add Book</h1>
+    </div>
+
+    <!-- 상품 등록 폼 -->
+    <form th:action="@{/book/addBook}" method="post" enctype="multipart/form-data">
+        <div class="content">
+            <div class="form-group">
+                <label for="provider">Author</label><br>
+                <input type="text" id="author" name="author" >
+            </div>
+            <div class="form-group">
+                <label for="description">Description</label> <br>
+                <textarea id="description" name="description" placeholder="" required></textarea>
+            </div>
+
+            <div class="form-group">
+                <label for="title">Title</label><br>
+                <input type="text" id="title" name="title" required>
+            </div>
+            <div class="form-group">
+                <label for="img">image</label><br>
+                <input class="upload" id="upFiles" name="upFiles" type="file" multiple="multiple">
+            </div>
+
+
+            <div class="form-group">
+                <label for="category">Category</label> <br>
+                <select id="category" name="category" required>
+                    <option value="fiction">소설</option>
+                    <option value="knowledge">지식</option>
+                    <option value="Scholarship">학문</option>
+                    <option value="hobby">취미</option>
+                </select>
+            </div>
+            <br>
+            <button class="uploadBtn" type="submit">도서 등록</button>
+        </div>
+    </form>
+
+    <div class="content">
+        <a class="main" href="/main">Main</a>
+    </div>
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.0/jquery.min.js"></script>
+    <script>
+       // Ajax를 이용한 파일 업로드
+       $('.uploadBtn').click(() => {
+           let formData = new FormData();
+           let inputFile = $('input[name="upFiles"]');
+           let files = inputFile[0].files;
+
+           for (let i = 0; i < files.length; i++) {
+               formData.append("upFiles", files[i]);
+           }
+
+           $.ajax({
+               url: '/uploadajax',
+               processData: false,
+               contentType: false,
+               data: formData,
+               type: 'post',
+               dataType: 'json',
+               success: (result) => {
+                   showUploadImg(result);
+                   console.log("서버의 업로드 처리 결과: " + result);
+               },
+               error: (result) => {
+                   console.log("업로드 실패!\n예외내용: " + result);
+               }
+           });
+       });
+
+       function showUploadImg(arr) {
+           console.log(arr);
+           let div = $('.uploadResult');
+           for (let i = 0; i < arr.length; i++) {
+               div.append("<img src='/display?fileName=" + arr[i].imageURL + "'>");
+           }
+       }
+   </script>
+</body>
+</html>

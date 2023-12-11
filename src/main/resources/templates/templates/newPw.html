@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>MyProfile</title>
+<link rel="stylesheet" type="text/css" th:href="@{/css/changepw.css}">
+</head>
+<body>
+<div class="container">
+    <form action="/newPw" method="post" id="passwordForm">
+        <div class="logo">
+            <a href="/main">9817Kg </a>
+        </div>
+
+        <div class="center">
+            <h1>NewPw</h1>
+        </div>
+
+        <div class="content">
+            <br>
+            <label>your email</label>
+            <input id="email" name="email" type="text" placeholder="email"/>
+            <br>
+           
+            
+            <label>New Password</label>
+            <input id="newPassword" name="newPassword" type="password" placeholder="New Password"/>
+            <button class="btn-show" type="button" onclick="togglePasswordVisibility('newPassword')">Show Password</button>
+            
+            <label for="confirmPassword">Confirm Pw</label>
+            <input type="password" id="confirmPassword" name="confirmPassword" placeholder="confirm"/>
+            <p id="passwordMismatch" style="color: red; display: none;">password mismatch.</p>
+            <button class="btn-show" type="button" onclick="togglePasswordVisibility('confirmPassword')">Show Password</button>
+            
+            <!-- 비밀번호 일치 여부를 나타내는 메시지 -->
+           
+
+          
+            <button type="submit" class="btn-primary">Modify</button>
+            <a class="back" href="/my/mypage">Back</a>
+            <a class="main" href="/main">Main</a>
+        </div>
+    </form>
+</div>
+
+<script>
+    const passwordForm = document.getElementById('passwordForm');
+    const newPassword = document.getElementById('newPassword');
+    const confirmPassword = document.getElementById('confirmPassword');
+    const passwordMismatch = document.getElementById('passwordMismatch');
+    const modifyButton = document.querySelector('.btn-primary');
+
+    passwordForm.addEventListener('submit', function (event) {
+        if (newPassword.value !== confirmPassword.value) {
+            passwordMismatch.style.display = 'block';
+            modifyButton.style.marginTop = '200px'; // Adjust the margin-top as needed
+            event.preventDefault(); // 폼 제출을 중지합니다.
+        } else {
+            passwordMismatch.style.display = 'none';
+            modifyButton.style.marginTop = '150px'; // Reset the margin-top
+        }
+    });
+
+    function togglePasswordVisibility(inputId) {
+        const input = document.getElementById(inputId);
+
+        if (input.type === 'password') {
+            input.type = 'text';
+        } else {
+            input.type = 'password';
+        }
+    }
+</script>
+</body>
+</html>

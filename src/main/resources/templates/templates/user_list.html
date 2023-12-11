@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<title>User List</title>
+<link rel="stylesheet" type="text/css" th:href="@{/css/user_list.css}">
+</head>
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<body>
+	<div class="logo">
+		<a href="/admin/admin">9817Kg </a>
+	</div>
+	<h1>User List</h1>
+
+	<table>
+		<thead>
+			<tr>
+				<th>이메일</th>
+				<th>이름</th>
+				<th>가입유형</th>
+				<th>가입날짜</th>
+
+				<th>회원삭제</th>
+			</tr>
+		</thead>
+		<tbody>
+
+			<tr th:each="member : ${members}"
+				th:if="${member.email != 'Admin@Admin'}">
+				<td th:text="${member.email}"></td>
+				<td th:text="${member.name}"></td>
+				<td th:text="${member.provider}"></td>
+				<td th:text="${member.joinDate}"></td>
+
+
+
+
+				<td>
+					<button th:onclick="'deleteMember(\'' + ${member.id} + '\')'">삭제</button>
+				</td>
+			</tr>
+		</tbody>
+	</table>
+	 <div class="pagination">
+    <span th:if="${bookPage.hasPrevious()}">
+        <a th:href="@{'/category/fiction?page=' + ${bookPageNumber - 1}}">이전</a>
+    </span>
+    <span th:each="pageNumber : ${#numbers.sequence(0, bookPage.totalPages + 1)}">
+        <a th:href="@{'/category/fiction?page=' + ${pageNumber + 1}}" th:text="${pageNumber + 1}"></a>
+    </span>
+    <span th:if="${bookPage.hasNext()}">
+        <a th:href="@{'/category/fiction?page=' + ${bookPageNumber + 1}}">다음</a>
+    </span>
+</div>
+	
+	<div class="content">
+		<a class="main" href="/admin/admin">Main</a>
+
+
+	</div>
+
+	<script>
+		function deleteMember(memberId) {
+			if (confirm('정말로 이 회원을 삭제하시겠습니까?')) {
+				$.ajax({
+					type : 'DELETE',
+					url : '/api/deleteMember/' + memberId,
+					success : function(response) {
+						if (response === 'success') {
+							// 삭제 성공한 경우, 페이지를 새로고침합니다.
+							location.reload();
+						} else {
+							console.log("삭제 중 예외 발생");
+							alert('삭제 중 오류가 발생했습니다.');
+						}
+					},
+					error : function() {
+						alert('삭제 중 오류가 발생했습니다.');
+					}
+				});
+			}
+		}
+	</script>
+</body>
+</html>
